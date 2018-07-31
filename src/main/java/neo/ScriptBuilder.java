@@ -49,6 +49,9 @@ public class ScriptBuilder {
         if(opcode != OpCode.JMP && opcode != OpCode.JMPIF && opcode != OpCode.JMPIFNOT && opcode != OpCode.CALL) {
             throw new Exception("runtime error: opcode error");
         }
+        byte[] offsetBytes = new byte[2];
+        Utils.uint16ToByteArrayLE(offset, offsetBytes, 0);
+        this.Emit(opcode, offsetBytes);
         return this;
     }
 
