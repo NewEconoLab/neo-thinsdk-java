@@ -29,6 +29,7 @@ public class TxCreator {
             inputs.add(input);
             Utxo utxo = utxos.get(i);
             byte[] hash = Utils.hexStringToBytes(utxo.getHash());
+            hash = Utils.reverseBytes(hash);
             input.setHash(hash);
 
             input.setIndex(utxo.getN());
@@ -51,7 +52,7 @@ public class TxCreator {
         vAssetId = Utils.reverseBytes(vAssetId);
         output.setAssetId(vAssetId);
         Fixed8 gasvalue = new Fixed8();
-        gasvalue.setValue(sum);
+        gasvalue.setValue(value);
         output.setValue(gasvalue);
         byte[] pubkeyhash = Helper.getPublicKeyHashFromAddress(toAddress);
         output.setToAddress(pubkeyhash);
@@ -133,6 +134,7 @@ public class TxCreator {
             inputs.add(input);
             Utxo utxo = utxos.get(i);
             byte[] hash = Utils.hexStringToBytes(utxo.getHash());
+            hash = Utils.reverseBytes(hash);
             input.setHash(hash);
 
             input.setIndex(utxo.getN());

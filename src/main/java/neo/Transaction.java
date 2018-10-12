@@ -175,7 +175,7 @@ public class Transaction {
             int countInputs = this.inputs.size();
             VarInt varInputs = new VarInt(countInputs);
             byte[] lenInputs = varInputs.encode();
-            baos.write(lenBytes);
+            baos.write(lenInputs);
 
             for(int i = 0; i < countInputs; i++) {
                 TransactionInput input = this.inputs.get(i);
